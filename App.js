@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Bananas from './src/Bananas';
 import Greeting from './src/Greeting';
+import Blink from './src/Blink';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,5 +21,6 @@ export default () => (
     <Text>Fuck</Text>
     <Bananas />
     <Greeting name="fucking name" />
+    <Blink text="blink" />
   </View>
 );
