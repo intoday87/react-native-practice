@@ -2,6 +2,9 @@
   "rules": {
     "import/first": [
       "off"
+    ],
+    "jsx-a11y/anchor-is-valid": [
+      "off"
     ]
   }
 }
