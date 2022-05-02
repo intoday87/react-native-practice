@@ -8,8 +8,10 @@
  * @format
  */
 
-import React, {useEffect, useRef} from 'react'
+import React, {useRef} from 'react'
 import {
+  Animated,
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -28,21 +30,25 @@ import {
 } from 'react-native/Libraries/NewAppScreen'
 
 const Section: React.FC<{
-  title: string;
+  title: string
 }> = ({children, title}) => {
   const viewRef = useRef<View>(null)
-  const [viewOpacity, setViewOpacity] = useState<number>(1);
+  const viewOpacity = useRef<Animated.Value>(new Animated.Value(1)).current
 
   const isDarkMode = useColorScheme() === 'dark'
   return (
     <View ref={viewRef} style={styles.sectionContainer}>
-      <button
-        onClick={() => {
-          setViewOpacity(0)
-        }}>
-        set opacity to 0
-      </button>
-      <Text
+      <Button
+        title="set opacity to 0"
+        onPress={() => {
+          Animated.timing(viewOpacity, {
+            toValue: 0,
+            duration: 10000,
+            useNativeDriver: true,
+          }).start()
+        }}
+      />
+      <Animated.Text
         style={[
           styles.sectionTitle,
           {
@@ -51,7 +57,7 @@ const Section: React.FC<{
           },
         ]}>
         {title}
-      </Text>
+      </Animated.Text>
       <Text
         style={[
           styles.sectionDescription,
